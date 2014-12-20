@@ -12,18 +12,18 @@
 
 ### Bugs fixed
 
-* Handle element assignment in `Lint/AssignmentInCondition`. ([@jonas054][])
+* [#1489](https://github.com/bbatsov/rubocop/pull/1489): Handle element assignment in `Lint/AssignmentInCondition`. ([@jonas054][])
 * [#1484](https://github.com/bbatsov/rubocop/issues/1484): Fix `EmptyLinesAroundAccessModifier` incorrectly finding a violation inside method calls with names identical to an access modifier. ([@dblock][])
-* Fix bug concerning `Exclude` properties inherited from a higher directory level. ([@jonas054][])
+* [#1498](https://github.com/bbatsov/rubocop/pull/1498): Fix bug concerning `Exclude` properties inherited from a higher directory level. ([@jonas054][])
 * [#1500](https://github.com/bbatsov/rubocop/issues/1500): Fix crashing `--auto-correct --only IndentationWidth`. ([@jonas054][])
 
 ## 0.28.0 (10/12/2014)
 
 ### New features
 
-* New cop `ExtraSpacing` points out unnecessary spacing in files. ([@blainesch][])
-* New cop `EmptyLinesAroundBlockBody` provides same functionality as the EmptyLinesAround(Class|Method|Module)Body but for blocks. ([@jcarbo][])
-* New cop `Style/EmptyElse` checks for empty `else`-clauses. ([@Koronen][])
+* [#1475](https://github.com/bbatsov/rubocop/pull/1475): New cop `ExtraSpacing` points out unnecessary spacing in files. ([@blainesch][])
+* [#1463](https://github.com/bbatsov/rubocop/pull/1463): New cop `EmptyLinesAroundBlockBody` provides same functionality as the EmptyLinesAround(Class|Method|Module)Body but for blocks. ([@jcarbo][])
+* [#1444](https://github.com/bbatsov/rubocop/pull/1444): New cop `Style/EmptyElse` checks for empty `else`-clauses. ([@Koronen][])
 * [#1454](https://github.com/bbatsov/rubocop/issues/1454): New `--only-guide-cops` and `AllCops/StyleGuideCopsOnly` options that will only enforce cops that link to a style guide. ([@marxarelli][])
 
 ### Changes
@@ -35,8 +35,8 @@
 
 ### Bugs fixed
 
-* Fix `%W[]` auto corrected to `%w(]`. ([@toy][])
-* Fix Style/ElseAlignment Cop to find the right parent on def/rescue/else/ensure/end. ([@oneamtu][])
+* [#1462](https://github.com/bbatsov/rubocop/pull/1462): Fix `%W[]` auto corrected to `%w(]`. ([@toy][])
+* [#1457](https://github.com/bbatsov/rubocop/pull/1457): Fix Style/ElseAlignment Cop to find the right parent on def/rescue/else/ensure/end. ([@oneamtu][])
 * [#1181](https://github.com/bbatsov/rubocop/issues/1181): *(fix again)* `Style/StringLiterals` cop stays away from strings inside interpolated expressions. ([@jonas054][])
 * [#1441](https://github.com/bbatsov/rubocop/issues/1441): Correct the logic used by `Style/Blocks` and other cops to determine if an auto-correction would alter the meaning of the code. ([@jonas054][])
 * [#1449](https://github.com/bbatsov/rubocop/issues/1449): Handle the case in `MultilineOperationIndentation` where instances of both correct style and unrecognized (plain wrong) style are detected during an `--auto-gen-config` run. ([@jonas054][])
