@@ -13,6 +13,55 @@ module RuboCop
         RETURN_VALUE_MSG = 'Prefer {...} over do...end for return value blocks.'
         SIDE_EFFECTS_MSG = 'Prefer do...end over {...} for side effects blocks.'
 
+        ENUM_RETURN_VALUE_METHODS = [
+          :sort,
+          :sort_by,
+          :grep,
+          :count,
+          :find,
+          :detect,
+          :find_index,
+          :find_all,
+          :select,
+          :reject,
+          :collect,
+          :map,
+          :flat_map,
+          :collect_concat,
+          :inject,
+          :reduce,
+          :partition,
+          :group_by,
+          :all?,
+          :any?,
+          :one?,
+          :none?,
+          :min,
+          :max,
+          :minmax,
+          :min_by,
+          :max_by,
+          :minmax_by,
+          :zip,
+          :take_while,
+          :drop_while,
+          :chunk,
+          :slice_before,
+          :slice_after,
+          :slice_when,
+          :drop_last
+        ]
+
+        ENUM_SIDE_EFFECTS_METHODS = [
+          :each_with_index,
+          :reverse_each,
+          :each_entry,
+          :each_slice,
+          :each_cons,
+          :each_with_object,
+          :cycle
+        ]
+
         def on_send(node)
           _receiver, method_name, *args = *node
           return unless args.any?
@@ -41,11 +90,9 @@ module RuboCop
               add_offense(node, :begin, SINGLE_LINE_MSG)
             end
           when :weirich_semantic
-            return_value_block = return_value_block?(node)
-
-            if return_value_block && block_begin != '{'
+            if return_value_block?(node) && block_begin != '{'
               add_offense(node, :begin, RETURN_VALUE_MSG)
-            elsif !return_value_block && block_begin == '{'
+            elsif side_effects_block?(node) && block_begin == '{'
               add_offense(node, :begin, SIDE_EFFECTS_MSG)
             end
           end
@@ -94,46 +141,16 @@ module RuboCop
 
         def return_value_block?(node)
           chained = node.parent && node.parent.type == :send
-          enum_return_value_methods = [
-            :sort,
-            :sort_by,
-            :grep,
-            :count,
-            :find,
-            :detect,
-            :find_index,
-            :find_all,
-            :select,
-            :reject,
-            :collect,
-            :map,
-            :flat_map,
-            :collect_concat,
-            :inject,
-            :reduce,
-            :partition,
-            :group_by,
-            :all?,
-            :any?,
-            :one?,
-            :none?,
-            :min,
-            :max,
-            :minmax,
-            :min_by,
-            :max_by,
-            :minmax_by,
-            :zip,
-            :take_while,
-            :drop_while,
-            :chunk,
-            :slice_before,
-            :slice_after,
-            :slice_when,
-            :drop_last
-          ]
-          enum_return_value_block = enum_return_value_methods.include?(node.children.first.children.last)
+          enum_return_value_block = ENUM_RETURN_VALUE_METHODS.include?(
+            node.children.first.children.last
+          )
           chained || enum_return_value_block
+        end
+
+        def side_effects_block?(node)
+          ENUM_SIDE_EFFECTS_METHODS.include?(
+            node.children.first.children.last
+          )
         end
       end
     end
