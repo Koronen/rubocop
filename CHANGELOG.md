@@ -14,6 +14,7 @@
 * [#1276](https://github.com/bbatsov/rubocop/issues/1276): `SelfAssignment` cop does auto-correction. ([@lumeet][])
 * Add autocorrect to `RedundantException`. ([@mattjmcnaughton][])
 * [#1571](https://github.com/bbatsov/rubocop/pull/1571): New cop `StructInheritance` checks for inheritance from Struct.new. ([@mmozuras][])
+* [#XXX](https://github.com/bbatsov/rubocop/pull/XXX): New style `weirich_semantic` for `Style/Blocks`. ([@Koronen][])
 
 ### Changes
 

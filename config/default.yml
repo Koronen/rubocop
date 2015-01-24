@@ -140,6 +140,13 @@ Style/BarePercentLiterals:
     - percent_q
     - bare_percent
 
+# Check for uses of braces or do/end around blocks.
+Style/Blocks:
+  EnforcedStyle: single_braces_multi_do_end
+  SupportedStyles:
+    - single_braces_multi_do_end
+    - weirich_semantic
+
 Style/BracesAroundHashParameters:
   EnforcedStyle: no_braces
   SupportedStyles:
